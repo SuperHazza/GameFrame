@@ -3,7 +3,29 @@ from GameFrame import TextObject, Globals, Level
 
 
 class EntryTextObject(TextObject):
+    """
+    A text input object for handling user entry in a game level.
+
+    Inherits from TextObject and allows for keyboard input, text editing,
+    and focus management. Used for capturing player names or other short text entries.
+
+    Attributes:
+        max_len (int): Maximum allowed length of the input text.
+        handle_key_events (bool): Whether the object should handle key events.
+        accepting_input (bool): Whether the object is currently accepting input.
+        active (bool): Whether the object is currently focused and active.
+    """
+
     def __init__(self, room: Level, x: int, y: int, max_len=4):
+        """
+        Initializes the EntryTextObject.
+
+        Args:
+            room (Level): The game level or room where the object is placed.
+            x (int): The x-coordinate of the object.
+            y (int): The y-coordinate of the object.
+            max_len (int, optional): Maximum length of input text. Defaults to 4.
+        """
         TextObject.__init__(self, room, x, y, '')
         self.max_len = max_len
         self.handle_key_events = True
@@ -11,12 +33,27 @@ class EntryTextObject(TextObject):
         self.active = True
 
     def accept_input(self):
+        """
+        Enables the object to accept input.
+        """
         self.accepting_input = True
 
     def set_focus(self, in_focus: bool):
+        """
+        Sets the focus state of the object.
+
+        Args:
+            in_focus (bool): True if the object should be active, False otherwise.
+        """
         self.active = in_focus
 
     def key_pressed(self, key):
+        """
+        Handles key press events for text entry.
+
+        Args:
+            key: The pygame key state array.
+        """
         if self.accepting_input and self.active:
 
             key_recognised = False

@@ -8,10 +8,45 @@ from pygame.joystick import Joystick
 from GameFrame.Globals import Globals
 from GameFrame.RoomObject import RoomObject
 
-
 class Level:
+    """
+    Represents a game level, managing all objects, events, input, and rendering for that level.
+
+    Handles the game loop, background, user input (keyboard, mouse, joystick), object management,
+    collision detection, and timed events.
+
+    Attributes:
+        screen (Surface): The pygame surface to render the level on.
+        objects (list): List of all RoomObject instances in the level.
+        keyboard_objects (list): Objects that handle keyboard events.
+        mouse_objects (list): Objects that handle mouse events.
+        _clock (pygame.time.Clock): Clock for managing frame rate.
+        running (bool): Indicates if the level is currently running.
+        quitting (bool): Indicates if the level is quitting.
+        background_color (tuple): RGB color for the background.
+        background_set (bool): Whether a background image is set.
+        background_image: The background image surface or identifier.
+        background_y (int): Y position for background scrolling.
+        background_scroll_speed (int): Speed of background scrolling.
+        background_scrolling (bool): Whether background scrolling is enabled.
+        user_events (list): List of timed user events.
+        joysticks (Joystick): List of connected joystick devices.
+        p1_btns (list): State of player 1's joystick buttons/axes.
+        p2_btns (list): State of player 2's joystick buttons/axes.
+        has_buttons_1 (bool): Whether player 1's joystick has buttons.
+        has_buttons_2 (bool): Whether player 2's joystick has buttons.
+        has_hat_1 (bool): Whether player 1's joystick has axes.
+        has_hat_2 (bool): Whether player 2's joystick has axes.
+    """
 
     def __init__(self, screen: Surface, joysticks: Joystick):
+        """
+        Initializes the Level with the given screen and joysticks.
+
+        Args:
+            screen (Surface): The pygame surface to render the level on.
+            joysticks (Joystick): List of connected joystick devices.
+        """
         self.screen = screen
         self.objects = []
         self.keyboard_objects = []
@@ -57,6 +92,12 @@ class Level:
                     self.p1_btns.append(self.joysticks[1].get_axis(i))
 
     def run(self) -> bool:
+        """
+        Runs the main game loop for the level.
+
+        Returns:
+            bool: True if the level is quitting, False otherwise.
+        """
         self.running = True
         for obj in self.objects:
             self.init_collision_list(obj)
@@ -164,14 +205,32 @@ class Level:
         return self.quitting
 
     def set_background_image(self, image_file: str):
+        """
+        Sets the background image for the level.
+
+        Args:
+            image_file (str): Filename of the background image.
+        """
         self.background_set = True
         self.background_image = pygame.image.load(os.path.join('Images', image_file)).convert_alpha()
 
     def set_background_scroll(self, speed: int):
+        """
+        Enables background scrolling at the specified speed.
+
+        Args:
+            speed (int): The scroll speed in pixels per frame.
+        """
         self.background_scrolling = True
         self.background_scroll_speed = speed
 
     def add_room_object(self, room_object: RoomObject):
+        """
+        Adds a RoomObject to the level and registers it for events as needed.
+
+        Args:
+            room_object (RoomObject): The object to add.
+        """
         # - Add to room objects list - #
         if len(self.objects) == 0:
             self.objects.append(room_object)
@@ -196,13 +255,43 @@ class Level:
             self.dynamic_init_collision_list(room_object)
 
     def load_sound(self, sound_file: str) -> Sound:
+        """
+        Loads a sound file from the Sounds directory.
+
+        Args:
+            sound_file (str): Filename of the sound to load.
+
+        Returns:
+            Sound: The loaded pygame Sound object.
+        """
         fq_filename = os.path.join('Sounds', sound_file)
         return pygame.mixer.Sound(fq_filename)
+    
+    def stop_sound(self):
+        """
+        Stops all currently playing sounds.
+        """
+        pygame.mixer.stop()
 
     def load_image(self, file_name: str) -> str:
+        """
+        Returns the full path to an image file in the Images directory.
+
+        Args:
+            file_name (str): Filename of the image.
+
+        Returns:
+            str: Full path to the image file.
+        """
         return os.path.join('Images', file_name)
 
     def init_collision_list(self, room_object: RoomObject):
+        """
+        Initializes the collision list for a given object.
+
+        Args:
+            room_object (RoomObject): The object to initialize collisions for.
+        """
         # - Initialise collision list for object - #
         for obj_name in room_object.collision_object_types:
             for obj_instance in self.objects:
@@ -210,6 +299,12 @@ class Level:
                     room_object.collision_objects.append(obj_instance)
 
     def dynamic_init_collision_list(self, room_object: RoomObject):
+        """
+        Dynamically updates collision lists when a new object is added.
+
+        Args:
+            room_object (RoomObject): The new object to add to collision lists.
+        """
         self.init_collision_list(room_object)
         obj_type = type(room_object).__name__
         for obj in self.objects:
@@ -218,9 +313,21 @@ class Level:
                     obj.collision_objects.append(room_object)
 
     def catch_events(self, events):
+        """
+        Handles additional pygame events not processed elsewhere.
+
+        Args:
+            events: List of pygame events.
+        """
         pass
 
     def delete_object(self, obj: RoomObject):
+        """
+        Removes an object from the level and all event/collision lists.
+
+        Args:
+            obj (RoomObject): The object to remove.
+        """
         for index, list_obj in self.enumerate_backwards(self.objects):
             if list_obj is obj:
                 self.objects.pop(index)
@@ -239,9 +346,19 @@ class Level:
                 self.user_events.pop(index)
 
     def set_timer(self, ticks: int, function_call: Callable):
+        """
+        Sets a timed event to call a function after a number of ticks.
+
+        Args:
+            ticks (int): Number of frames to wait before calling the function.
+            function_call (Callable): The function to call.
+        """
         self.user_events.append([ticks, function_call])
 
     def process_user_events(self):
+        """
+        Processes and triggers any timed user events.
+        """
         for index, user_event in self.enumerate_backwards(self.user_events):
             user_event[0] -= 1
             if user_event[0] <= 0:
@@ -250,6 +367,15 @@ class Level:
                 event()
                 
     def count_object(self, object_name):
+        """
+        Counts the number of objects of a given type in the level.
+
+        Args:
+            object_name (str): The class name of the object to count.
+
+        Returns:
+            int: The number of objects of the specified type.
+        """
         total = 0
         for item in self.objects:
             item_type = type(item).__name__
@@ -259,6 +385,15 @@ class Level:
 
     # Iterate backwards over a list, using an index and item iterator
     def enumerate_backwards(self, object_list: List):
+        """
+        Iterates backwards over a list, yielding index and item.
+
+        Args:
+            object_list (List): The list to iterate over.
+
+        Yields:
+            tuple: (index, item) for each element in reverse order.
+        """
         index = len(object_list)
         for item in reversed(object_list):
             index -= 1
