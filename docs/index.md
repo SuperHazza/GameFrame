@@ -20,4 +20,3 @@ After cloning, navigate into the project directory and install the required depe
 cd GameFrame
 pip install -r requirements.txt
 ```
-
