@@ -10,7 +10,7 @@ class Title(RoomObject):
 
         # set image
         image = self.load_image("Title.png")
-        self.set_image(image,100,100)
+        self.set_image(image,800,200)
 
         # register for key events
         self.handle_key_events = True 

@@ -12,4 +12,4 @@ class WelcomeScreen(Level):
         self.set_background_image("Rooms\Background.png")
 
         # add title object
-        self.add_room_object(Title(self, 240, 200))
+        self.add_room_object(Title(self, 112, 200))
