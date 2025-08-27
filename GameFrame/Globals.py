@@ -19,11 +19,12 @@ class Globals:
         destroyed_count (int): User-defined global variable for destroyed count.
     """
 
+
     running = True
     FRAMES_PER_SECOND = 30
 
-    SCREEN_WIDTH = 1280
-    SCREEN_HEIGHT = 800
+    SCREEN_WIDTH = 1024
+    SCREEN_HEIGHT = 768
 
     SCORE = 0
 
@@ -34,7 +35,7 @@ class Globals:
     window_name = 'Pokemon Crimson-Red'
 
     # - Set the order of the rooms - #
-    levels = ["WelcomeScreen", "Maze", "ScrollingShooter", "BreakOut"]
+    levels = ["WelcomeScreen", "GamePlay"]
 
     # - Set the starting level - #
     start_level = 0
