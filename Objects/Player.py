@@ -37,10 +37,10 @@ class Player(RoomObject):
         """
         Keeps the player inside the room
         """
-        if self.y < 0:
-            self.y = 0
-        elif self.y + self.height> Globals.SCREEN_HEIGHT:
-            self.y = Globals.SCREEN_HEIGHT - self.height
+        if self.y < 100:
+            self.y = 100
+        elif self.y + self.height> Globals.SCREEN_HEIGHT-100:
+            self.y = Globals.SCREEN_HEIGHT-100 - self.height
         elif self.x < 0:
             self.x = 0
         elif self.x + self.width> Globals.SCREEN_WIDTH:
