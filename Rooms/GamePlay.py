@@ -13,4 +13,4 @@ class GamePlay(Level):
         # add objects
         self.add_room_object(Player(self, 25, 50))
         self.add_room_object(Trainer_1(self,400, 600))
-        self.add_room_object(Trainer_1(self,800, 100))
+        self.add_room_object(Trainer_2(self,800, 100))

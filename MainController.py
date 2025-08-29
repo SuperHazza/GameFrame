@@ -29,9 +29,9 @@ while Globals.running:
     Globals.next_level += 1
     Globals.next_level %= len(levels)
     mod_name = f"Rooms.{levels[curr_level]}"
-    mod = __import__(mod_name)
-    class_name = getattr(mod, levels[curr_level])
-    room = class_name(screen, joysticks)
+    mod = __import__(mod_name, fromlist=[levels[curr_level]])
+    class_obj = getattr(mod, levels[curr_level])
+    room = class_obj(screen, joysticks)
     exit_val = room.run()
 
     if exit_val is True or Globals.running is False:

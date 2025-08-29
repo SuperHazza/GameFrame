@@ -2,13 +2,12 @@ from GameFrame import RoomObject
 
 class Trainer_2(RoomObject):
     """
-    A class for the game's antagoist
+    A class for the game's 2nd trainer
     """
     def __init__(self, room, x, y):
-
-        # include attributes and methods from RoomObject
         RoomObject.__init__(self, room, x, y)
         
         # set image
-        image = self.load_image("Trainer_frames\Trainer_2.png")
-        self.set_image(image,64,64)
+        print("Loading image for Trainer_2:", "Trainer_frames/Trainer_2.png")
+        image_2 = self.load_image("Trainer_frames/Trainer_2.png")
+        self.set_image(image_2,64,64)

@@ -35,7 +35,7 @@ class Globals:
     window_name = 'Pokemon Crimson-Red'
 
     # - Set the order of the rooms - #
-    levels = ["WelcomeScreen", "GamePlay"]
+    levels = ["WelcomeScreen", "GamePlay", "Trainer_Battle_1"]
 
     # - Set the starting level - #
     start_level = 0

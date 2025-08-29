@@ -1,4 +1,5 @@
 from GameFrame import RoomObject, Globals
+from Rooms import Trainer_Battle_1
 import pygame
 
 class Player(RoomObject):
@@ -18,6 +19,9 @@ class Player(RoomObject):
 
         # register events
         self.handle_key_events = True
+
+        # register events
+        self.register_collision_object("Trainer_1")
         
     def key_pressed(self, key):
         """
@@ -51,3 +55,16 @@ class Player(RoomObject):
         Determine what happens to the Player on each click of the game clock
         """
         self.keep_in_room()
+
+    def handle_collision(self, other, other_type):
+        """
+        Handles the collision events for the Player
+        """
+        print("Here")
+        if other_type == "Trainer_1":
+            print("Here 1")
+            # Find the index of Trainer_Battle_1 in Globals.levels
+            if "Trainer_Battle_1" in Globals.levels:
+                print("Here 2")
+                Globals.level = Globals.next_level 
+            self.room.running = False
