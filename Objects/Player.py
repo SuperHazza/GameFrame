@@ -22,6 +22,7 @@ class Player(RoomObject):
 
         # register events
         self.register_collision_object("Trainer_1")
+        self.register_collision_object("Trainer_2")
         
     def key_pressed(self, key):
         """
@@ -57,14 +58,15 @@ class Player(RoomObject):
         self.keep_in_room()
 
     def handle_collision(self, other, other_type):
-        """
-        Handles the collision events for the Player
-        """
-        print("Here")
+
         if other_type == "Trainer_1":
-            print("Here 1")
             # Find the index of Trainer_Battle_1 in Globals.levels
             if "Trainer_Battle_1" in Globals.levels:
-                print("Here 2")
-                Globals.level = Globals.next_level 
+                Globals.next_level = Globals.levels.index("Trainer_Battle_1")
+            self.room.running = False
+
+        if other_type == "Trainer_2":
+            # Find the index of Trainer_Battle_2 in Globals.levels
+            if "Trainer_Battle_2" in Globals.levels:
+                Globals.next_level = Globals.levels.index("Trainer_Battle_2")
             self.room.running = False
