@@ -1,6 +1,8 @@
 from GameFrame import RoomObject, Globals
 from Rooms import Trainer_Battle_1
 import pygame
+import time
+import random
 
 class Player(RoomObject):
     """
@@ -23,6 +25,7 @@ class Player(RoomObject):
         # register events
         self.register_collision_object("Trainer_1")
         self.register_collision_object("Trainer_2")
+        self.register_collision_object("Grass")
         
     def key_pressed(self, key):
         """
@@ -70,3 +73,31 @@ class Player(RoomObject):
             if "Trainer_Battle_2" in Globals.levels:
                 Globals.next_level = Globals.levels.index("Trainer_Battle_2")
             self.room.running = False
+
+
+            # When player steps into grass
+        if other_type == "Grass":
+            if not hasattr(self, "in_grass") or not self.in_grass:  # only trigger when first stepping in
+                self.in_grass = True
+                print("Stepped in Grass!")
+
+                # Set a future time for the encounter
+                self.encounter_time = time.time() + random.randint(3, 15)
+                self.encounter_triggered = False
+
+        # Somewhere in your game loop, keep checking:
+        if hasattr(self, "in_grass") and self.in_grass and not self.encounter_triggered:
+            if time.time() >= self.encounter_time:  # Time has passed
+                print("POKEMON ENCOUNTER!!!!!")
+
+                if "Pokemon_Encounter" in Globals.levels:
+                    Globals.next_level = Globals.levels.index("Pokemon_Encounter")
+                    self.room.running = False
+
+                self.encounter_triggered = True  # so it doesn't trigger repeatedly
+
+        # When player leaves the grass
+        if other_type != "Grass":
+            self.in_grass = False
+            self.encounter_time = None
+            self.encounter_triggered = False
