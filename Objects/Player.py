@@ -1,5 +1,5 @@
 from GameFrame import RoomObject, Globals
-from Rooms import Trainer_Battle_1
+from Rooms import Trainer_Battle_1, GamePlay_2
 import pygame
 import time
 import random
@@ -26,6 +26,8 @@ class Player(RoomObject):
         self.register_collision_object("Trainer_1")
         self.register_collision_object("Trainer_2")
         self.register_collision_object("Grass")
+        self.register_collision_object("Room_TP")
+        self.register_collision_object("Room_TP_2")
         
     def key_pressed(self, key):
         """
@@ -72,6 +74,18 @@ class Player(RoomObject):
             # Find the index of Trainer_Battle_2 in Globals.levels
             if "Trainer_Battle_2" in Globals.levels:
                 Globals.next_level = Globals.levels.index("Trainer_Battle_2")
+            self.room.running = False
+
+        if other_type == "Room_TP":
+            print("Teleported!")
+            if "GamePlay_2" in Globals.levels:
+                Globals.next_level = Globals.levels.index("GamePlay_2")
+            self.room.running = False
+
+        if other_type == "Room_TP_2":
+            print("Teleported!")
+            if "GamePlay" in Globals.levels:
+                Globals.next_level = Globals.levels.index("GamePlay")
             self.room.running = False
 
 
