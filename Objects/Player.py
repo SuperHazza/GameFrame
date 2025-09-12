@@ -82,7 +82,7 @@ class Player(RoomObject):
                 print("Stepped in Grass!")
 
                 # Set a future time for the encounter
-                self.encounter_time = time.time() + random.randint(3, 15)
+                self.encounter_time = time.time() + random.randint(3, 10)
                 self.encounter_triggered = False
 
         # Somewhere in your game loop, keep checking:
@@ -101,3 +101,13 @@ class Player(RoomObject):
             self.in_grass = False
             self.encounter_time = None
             self.encounter_triggered = False
+
+class Big_Player(RoomObject):
+
+    def __init__(self, room, x, y):
+        
+        RoomObject.__init__(self, room, x, y)
+        
+        # set image
+        image = self.load_image("Player_frames\Big_Player.png")
+        self.set_image(image,256,256)
