@@ -20,5 +20,5 @@ class Title(RoomObject):
         If the key pressed is X the game will start
         """
         
-        if key[pygame.K_x]:
+        if pygame.mouse.get_pressed()[0]:
             self.room.running = False
