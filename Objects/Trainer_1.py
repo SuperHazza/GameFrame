@@ -1,9 +1,7 @@
 from GameFrame import RoomObject
 
 class Trainer_1(RoomObject):
-    """
-    A class for the game's antagoist
-    """
+    
     def __init__(self, room, x, y):
 
         # include attributes and methods from RoomObject
