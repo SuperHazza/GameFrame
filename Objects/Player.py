@@ -96,7 +96,7 @@ class Player(RoomObject):
                 print("Stepped in Grass!")
 
                 # Set a future time for the encounter
-                self.encounter_time = time.time() + random.randint(3, 10)
+                self.encounter_time = time.time() + random.randint(1, 5)
                 self.encounter_triggered = False
 
         # Somewhere in your game loop, keep checking:
@@ -113,7 +113,7 @@ class Player(RoomObject):
         # When player leaves the grass
         if other_type != "Grass":
             self.in_grass = False
-            self.encounter_time = None
+            self.encounter_time = 0
             self.encounter_triggered = False
 
 class Big_Player(RoomObject):
