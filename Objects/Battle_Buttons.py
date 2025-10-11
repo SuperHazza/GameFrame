@@ -31,7 +31,7 @@ class Attack(RoomObject):
     def key_pressed(self, key):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            if 600 <= mouse_x <= 728 and 500 <= mouse_y <= 564:
+            if 650 <= mouse_x <= 778 and 500 <= mouse_y <= 564:
                 print("Attacked")
 
 class Items(RoomObject):
@@ -46,7 +46,7 @@ class Items(RoomObject):
     def key_pressed(self, key):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            if 600 <= mouse_x <= 728 and 628 <= mouse_y <= 692:
+            if 650 <= mouse_x <= 778 and 628 <= mouse_y <= 692:
                 print("Accessed Items")
 
 class Swap(RoomObject):
