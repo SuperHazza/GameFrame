@@ -1,5 +1,6 @@
-from GameFrame import RoomObject
+from GameFrame import RoomObject, Globals
 import pygame
+from Objects.Pokemon import Opponent_HP
 
 class Run(RoomObject):
 
@@ -15,9 +16,8 @@ class Run(RoomObject):
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 864 <= mouse_x <= 992 and 628 <= mouse_y <= 692:
                 print("Run from battle")
-                self.room.running = False
-                self.room.next_room = "GamePlay"
-        
+                Globals.next_level = Globals.levels.index("GamePlay")
+                self.room.running = False    
 
 class Attack(RoomObject):
 
@@ -33,6 +33,7 @@ class Attack(RoomObject):
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 650 <= mouse_x <= 778 and 500 <= mouse_y <= 564:
                 print("Attacked")
+                self.room.opponent_hp.update_opponent_hp(-10)
 
 class Items(RoomObject):
 
