@@ -19,5 +19,6 @@ class GamePlay(Level):
         self.add_room_object(Trainer_2(self,800, 100))
         self.add_room_object(Grass(self,600, 500))
         self.add_room_object(Room_TP(self,750, 200))
-        self.add_room_object(Poke_Centre(self,200, 100))    
+        self.add_room_object(Poke_Centre(self,200, 100)) 
+
 

@@ -26,10 +26,8 @@ class Globals:
     SCREEN_WIDTH = 1024
     SCREEN_HEIGHT = 768
 
-    SCORE = 0
-
-    # - Set the starting number of lives - #
-    LIVES = 3
+    OPPONENT_HP = 60
+    PLAYER_HP = 60
 
     # - Set the Window display name - #
     window_name = 'Pokemon Crimson-Red'

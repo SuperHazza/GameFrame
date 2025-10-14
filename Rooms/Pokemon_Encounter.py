@@ -1,9 +1,7 @@
 from GameFrame import Level, Globals
-from Objects.Pokemon import Pokemon, Opponent_HP
+from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
 from Objects.Player import Big_Player
 from Objects.Battle_Buttons import Attack, Run, Swap, Items
-
-Opponent_HP == 60
 
 class Pokemon_Encounter(Level):
     def __init__(self, screen, joysticks):
@@ -22,6 +20,11 @@ class Pokemon_Encounter(Level):
 
         # add HUD items
         self.opponent_hp = Opponent_HP(self, 
-                           Globals.SCREEN_WIDTH/2 - 20, 20, 
-                           str(Globals.SCORE))
+                           Globals.SCREEN_WIDTH/2 - 80, 20, 
+                           str(Globals.OPPONENT_HP))
         self.add_room_object(self.opponent_hp)
+
+        self.player_hp = Player_HP(self, 
+                           Globals.SCREEN_WIDTH/2 - 180, 650, 
+                           str(Globals.PLAYER_HP))
+        self.add_room_object(self.player_hp)
