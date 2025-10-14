@@ -3,10 +3,11 @@ from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
 from Objects.Player import Big_Player
 from Objects.Battle_Buttons import Attack, Run, Swap, Items
 
+
 class Pokemon_Encounter(Level):
     def __init__(self, screen, joysticks):
         Level.__init__(self, screen, joysticks)
-        
+
         # set background image
         self.set_background_image("Rooms\Battle_Background.png")
 
