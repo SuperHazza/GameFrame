@@ -8,6 +8,8 @@ class Pokemon_Encounter(Level):
     def __init__(self, screen, joysticks):
         Level.__init__(self, screen, joysticks)
 
+        Globals.OPPONENT_HP = 60
+        
         # set background image
         self.set_background_image("Rooms\Battle_Background.png")
 

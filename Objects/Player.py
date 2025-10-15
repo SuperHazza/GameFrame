@@ -1,5 +1,6 @@
 from GameFrame import RoomObject, Globals
 from Rooms import Trainer_Battle_1, GamePlay_2
+from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
 import pygame
 import time
 import random
@@ -28,6 +29,7 @@ class Player(RoomObject):
         self.register_collision_object("Grass")
         self.register_collision_object("Room_TP")
         self.register_collision_object("Room_TP_2")
+        self.register_collision_object("Poke_Centre")
         
     def key_pressed(self, key):
         """
@@ -88,6 +90,9 @@ class Player(RoomObject):
                 Globals.next_level = Globals.levels.index("GamePlay")
             self.room.running = False
 
+        if other_type == "Poke_Centre":
+            print("Healed at Poke Centre!")
+            Globals.PLAYER_HP = 60
 
             # When player steps into grass
         if other_type == "Grass":
