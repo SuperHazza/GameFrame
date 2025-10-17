@@ -14,7 +14,7 @@ class GamePlay_2(Level):
 
         # add objects
         from Objects.Player import Player
-        self.add_room_object(Player(self, 25, 50))
+        self.add_room_object(Player(self, 345, 360))
         self.add_room_object(Trainer_1(self,200, 600))
         self.add_room_object(Trainer_2(self,600, 100))
         self.add_room_object(Grass(self,500, 400))
