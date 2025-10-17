@@ -1,6 +1,7 @@
 from GameFrame import RoomObject, Globals
 import pygame
 from Objects.Pokemon import Opponent_HP, Player_HP
+from Objects.Battle_Effects import Miss, Crit
 import time
 import random
 
@@ -39,12 +40,19 @@ class Attack(RoomObject):
                 print(miss_crit_2)
                 if miss_crit_2 == 2:
                     print("Your attack missed!")
+                    #SPAWN MISS EFFECT
+                    #self.set_timer(30, DESTROY MISS EFFECT)
                 elif miss_crit_2 == 3:
                     self.room.opponent_hp.update_opponent_hp(random.randint(-24, -16))
                     print("You hit a critical hit!")
+                    #SPAWN CRIT EFFECT
+                    #self.set_timer(30, DESTROY CRIT EFFECT)
                 else:
                     self.room.opponent_hp.update_opponent_hp(random.randint(-12, -8))
                     print("You Attacked the Opponent")
+                    #####
+                    #####
+                    #####
                 self.set_timer(30, self.enemy_attack)
         self.previous_mouse = pygame.mouse.get_pressed()[0]
 

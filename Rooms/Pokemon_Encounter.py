@@ -2,6 +2,7 @@ from GameFrame import Level, Globals
 from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
 from Objects.Player import Big_Player
 from Objects.Battle_Buttons import Attack, Run, Swap, Items
+from Objects.Battle_Effects import Miss, Crit
 
 
 class Pokemon_Encounter(Level):
@@ -14,6 +15,8 @@ class Pokemon_Encounter(Level):
         self.set_background_image("Rooms\Battle_Background.png")
 
         # add objects
+        self.add_room_object(Miss(self, 50, 50))
+        self.add_room_object(Crit(self, 50, 50))
         self.add_room_object(Pokemon(self, 620, 30))
         self.add_room_object(Big_Player(self, 177, 400))
         self.add_room_object(Attack(self, 650, 500))

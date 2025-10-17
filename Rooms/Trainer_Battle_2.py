@@ -1,6 +1,7 @@
 from GameFrame import Level, Globals
 from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
 from Objects.Battle_Buttons import Attack, Run, Swap, Items
+from Objects.Battle_Effects import Miss, Crit
 
 class Trainer_Battle_2(Level):
     def __init__(self, screen, joysticks):
@@ -13,6 +14,8 @@ class Trainer_Battle_2(Level):
 
         # add objects
         from Objects.Player import Big_Player
+        self.add_room_object(Miss(self, 50, 50))
+        self.add_room_object(Crit(self, 50, 50))
         self.add_room_object(Pokemon(self, 620, 30))
         self.add_room_object(Big_Player(self, 177, 400))
         self.add_room_object(Attack(self, 650, 500))

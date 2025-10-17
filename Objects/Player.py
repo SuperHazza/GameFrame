@@ -44,6 +44,10 @@ class Player(RoomObject):
             self.x -= 5
         elif key[pygame.K_d]:
             self.x += 5
+        elif key[pygame.K_UP]:
+            self.image.set_alpha(10)
+        elif key[pygame.K_DOWN]:
+            self.image.set_alpha(255)
 
     def keep_in_room(self):
         """
