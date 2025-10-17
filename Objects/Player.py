@@ -37,13 +37,13 @@ class Player(RoomObject):
         """
         
         if key[pygame.K_w]:
-            self.y -= 10
+            self.y -= 5
         elif key[pygame.K_s]:
-            self.y += 10
+            self.y += 5
         if key[pygame.K_a]:
-            self.x -= 10
+            self.x -= 5
         elif key[pygame.K_d]:
-            self.x += 10
+            self.x += 5
 
     def keep_in_room(self):
         """

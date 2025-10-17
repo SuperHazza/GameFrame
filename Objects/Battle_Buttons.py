@@ -61,9 +61,17 @@ class Attack(RoomObject):
             elif miss_crit == 3:
                 self.room.player_hp.update_player_hp(random.randint(-20, -12))
                 print("The Opponent Hit a Critical Hit!")
+                if Globals.PLAYER_HP <= 0:
+                    print("You have been defeated!")
+                    Globals.next_level = Globals.levels.index("GamePlay")
+                    self.room.running = False
             else:
                 self.room.player_hp.update_player_hp(random.randint(-10, -6))
                 print("You got attacked")
+                if Globals.PLAYER_HP <= 0:
+                    print("You have been defeated!")
+                    Globals.next_level = Globals.levels.index("GamePlay")
+                    self.room.running = False
         
                 
 
