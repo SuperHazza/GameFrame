@@ -30,6 +30,7 @@ class Player(RoomObject):
         self.register_collision_object("Room_TP")
         self.register_collision_object("Room_TP_2")
         self.register_collision_object("Poke_Centre")
+        self.register_collision_object("Poke_Store")
         
     def key_pressed(self, key):
         """
@@ -92,6 +93,13 @@ class Player(RoomObject):
             print("Teleported!")
             if "GamePlay" in Globals.levels:
                 Globals.next_level = Globals.levels.index("GamePlay")
+            self.room.running = False
+
+        if other_type == "Poke_Store":
+            print("Store Entered!")
+            if "Poke_Store" in Globals.levels:
+                Globals.next_level = Globals.levels.index("Poke_Store")
+                print("hiiiii")
             self.room.running = False
 
         if other_type == "Poke_Centre":
