@@ -28,8 +28,10 @@ class Globals:
 
     OPPONENT_HP = 60
     PLAYER_HP = 60
-    POKE_BALLS = 0
+    POKE_BALLS = 5
     MYSTERY_MEAT = 0
+    MYSTERY_MEAT_STOCK = 0
+    POKE_BALL_STOCK = 0
 
     # - Set the Window display name - #
     window_name = 'Pokemon Crimson-Red'

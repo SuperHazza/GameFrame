@@ -58,7 +58,8 @@ class Attack(RoomObject):
 
     def enemy_attack(self):
         if Globals.OPPONENT_HP <= 0:
-            print("Opponent Defeated")
+            print("Opponent Defeated, A Pokeball was restocked!")
+            Globals.POKE_BALL_STOCK += 1
             Globals.next_level = Globals.levels.index("GamePlay")
             self.room.running = False
         else:
@@ -111,4 +112,11 @@ class Swap(RoomObject):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 864 <= mouse_x <= 992 and 500 <= mouse_y <= 564:
-                print("Swapped Pokemon")
+                if Globals.POKE_BALLS > 0:
+                    Globals.POKE_BALLS -= 1
+                    print("Caught a Pokemon!")
+                    print("You have", Globals.POKE_BALLS, "Poke Balls left!")
+                    Globals.next_level = Globals.levels.index("GamePlay")
+                    self.room.running = False
+                else:
+                    print("You have no Poke Balls left!")

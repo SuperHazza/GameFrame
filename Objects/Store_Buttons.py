@@ -28,9 +28,14 @@ class Buy_1(RoomObject):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 500 <= mouse_x <= 756 and 200 <= mouse_y <= 328:
-                print("bought an item 1")
-                Globals.POKE_BALLS += 1
-                print("You now have", Globals.POKE_BALLS, "Poke Balls!")
+                if Globals.POKE_BALL_STOCK <= 0:
+                    print("Sorry, we're out of Poke Balls!")
+                    return
+                else:
+                    print("bought an item 1")
+                    Globals.POKE_BALLS += 1
+                    print("You now have", Globals.POKE_BALLS, "Poke Balls!")
+                    Globals.POKE_BALL_STOCK -= 1
 
 class Buy_2(RoomObject):
 
