@@ -18,6 +18,7 @@ class Pokemon_Encounter(Level):
         self.add_room_object(Miss(self, 50, 50))
         self.add_room_object(Crit(self, 50, 50))
         self.add_room_object(Alolan_Diglet(self, 620, 30))
+        Globals.Last_Opponent_Pokemon == "Alolan_Diglet"
         self.add_room_object(Big_Player(self, 177, 400))
         self.add_room_object(Attack(self, 650, 500))
         self.add_room_object(Run(self, 864, 628))   

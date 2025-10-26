@@ -116,7 +116,7 @@ class Catch(RoomObject):
                     Globals.POKE_BALLS -= 1
                     print("Caught a Pokemon!")
                     print("You have", Globals.POKE_BALLS, "Poke Balls left!")
-                    Globals.next_level = Globals.levels.index("GamePlay")
+                    Globals.next_level = Globals.levels.index("Catch_Room")
                     self.room.running = False
                 else:
                     print("You have no Poke Balls left!")

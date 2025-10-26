@@ -140,5 +140,18 @@ class Big_Player(RoomObject):
         RoomObject.__init__(self, room, x, y)
         
         # set image
-        image = self.load_image("Pokemon_frames\Pikachu.png")
-        self.set_image(image,256,256)
+        if Globals.CURRENT_POKEMON == "Pikachu":
+            image = self.load_image("Pokemon_frames\Pikachu.png")
+            self.set_image(image,256,256)
+        elif Globals.CURRENT_POKEMON == "Alolan_Diglet":
+            image = self.load_image("Pokemon_frames\Alolan_Diglet.png")
+            self.set_image(image,256,256)
+        elif Globals.CURRENT_POKEMON == "Hisuian_Zorua":
+            image = self.load_image("Pokemon_frames\Hisuian_Zorua.png")
+            self.set_image(image,256,256)
+        elif Globals.CURRENT_POKEMON == "Pancham":
+            image = self.load_image("Pokemon_frames\Pancham.png")
+            self.set_image(image,256,256)
+        elif Globals.CURRENT_POKEMON == "Mega_Victribell":
+            image = self.load_image("Pokemon_frames\Mega_Victribell.png")
+            self.set_image(image,256,256)

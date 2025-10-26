@@ -32,12 +32,14 @@ class Globals:
     MYSTERY_MEAT = 0
     MYSTERY_MEAT_STOCK = 0
     POKE_BALL_STOCK = 0
+    CURRENT_POKEMON = "Pikachu"
+    Last_Opponent_Pokemon = "Alolan_Diglet"
 
     # - Set the Window display name - #
     window_name = 'Pokemon Crimson-Red'
 
     # - Set the order of the rooms - #
-    levels = ["WelcomeScreen", "GamePlay", "Trainer_Battle_1", "Trainer_Battle_2", "Pokemon_Encounter", "GamePlay_2", "Poke_Store"]
+    levels = ["WelcomeScreen", "GamePlay", "Trainer_Battle_1", "Trainer_Battle_2", "Pokemon_Encounter", "GamePlay_2", "Poke_Store", "Catch_Room"]
 
     # - This variable keeps track of the room that will follow the current room - #
     # - Change this value to move through rooms in a non-sequential manner - #
