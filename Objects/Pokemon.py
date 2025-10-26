@@ -1,6 +1,6 @@
 from GameFrame import RoomObject, TextObject, Globals
 
-class Pokemon(RoomObject):
+class Mega_Victribell(RoomObject):
 
     def __init__(self, room, x, y):
 
@@ -8,7 +8,37 @@ class Pokemon(RoomObject):
         RoomObject.__init__(self, room, x, y)
         
         # set image
-        image = self.load_image("Pokemon_frames\Pokemon.png")
+        image = self.load_image("Pokemon_frames\Mega_Victribell.png")
+        self.set_image(image,256,256)
+
+class Pancham(RoomObject):
+    def __init__(self, room, x, y):
+
+        # include attributes and methods from RoomObject
+        RoomObject.__init__(self, room, x, y)
+        
+        # set image
+        image = self.load_image("Pokemon_frames\Pancham.png")
+        self.set_image(image,256,256)
+
+class Alolan_Diglet(RoomObject):
+    def __init__(self, room, x, y):
+
+        # include attributes and methods from RoomObject
+        RoomObject.__init__(self, room, x, y)
+        
+        # set image
+        image = self.load_image("Pokemon_frames\Alolan_Diglet.png")
+        self.set_image(image,256,256)
+
+class Hisuian_Zorua(RoomObject):
+    def __init__(self, room, x, y):
+
+        # include attributes and methods from RoomObject
+        RoomObject.__init__(self, room, x, y)
+        
+        # set image
+        image = self.load_image("Pokemon_frames\Hisuian_Zorua.png")
         self.set_image(image,256,256)
 
 class Opponent_HP(TextObject):

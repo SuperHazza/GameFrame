@@ -1,6 +1,6 @@
 from GameFrame import RoomObject, Globals
 from Rooms import Trainer_Battle_1, GamePlay_2
-from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
+from Objects.Pokemon import Opponent_HP, Player_HP
 import pygame
 import time
 import random
@@ -140,5 +140,5 @@ class Big_Player(RoomObject):
         RoomObject.__init__(self, room, x, y)
         
         # set image
-        image = self.load_image("Player_frames\Big_Player.png")
+        image = self.load_image("Pokemon_frames\Pikachu.png")
         self.set_image(image,256,256)

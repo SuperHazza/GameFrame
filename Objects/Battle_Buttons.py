@@ -84,11 +84,11 @@ class Attack(RoomObject):
         
                 
 
-class Items(RoomObject):
+class Feed(RoomObject):
 
     def __init__(self, room, x, y):
         super().__init__(room, x, y)
-        image = self.load_image("Battle/Item_Button.png")
+        image = self.load_image("Battle/Feed_Button.png")
         self.set_image(image, 128, 64)
         
         self.handle_key_events = True
@@ -97,13 +97,13 @@ class Items(RoomObject):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 650 <= mouse_x <= 778 and 628 <= mouse_y <= 692:
-                print("Accessed Items")
+                print("Fed mystery meat to your Pokemon!")
 
-class Swap(RoomObject):
+class Catch(RoomObject):
 
     def __init__(self, room, x, y):
         super().__init__(room, x, y)
-        image = self.load_image("Battle/Swap_Button.png")
+        image = self.load_image("Battle/Catch_Button.png")
         self.set_image(image, 128, 64)
         
         self.handle_key_events = True

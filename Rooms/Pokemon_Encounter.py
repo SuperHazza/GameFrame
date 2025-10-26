@@ -1,7 +1,7 @@
 from GameFrame import Level, Globals
-from Objects.Pokemon import Pokemon, Opponent_HP, Player_HP
+from Objects.Pokemon import Alolan_Diglet, Opponent_HP, Player_HP
 from Objects.Player import Big_Player
-from Objects.Battle_Buttons import Attack, Run, Swap, Items
+from Objects.Battle_Buttons import Attack, Run, Catch, Feed
 from Objects.Battle_Effects import Miss, Crit
 
 
@@ -17,12 +17,12 @@ class Pokemon_Encounter(Level):
         # add objects
         self.add_room_object(Miss(self, 50, 50))
         self.add_room_object(Crit(self, 50, 50))
-        self.add_room_object(Pokemon(self, 620, 30))
+        self.add_room_object(Alolan_Diglet(self, 620, 30))
         self.add_room_object(Big_Player(self, 177, 400))
         self.add_room_object(Attack(self, 650, 500))
         self.add_room_object(Run(self, 864, 628))   
-        self.add_room_object(Swap(self, 864, 500))
-        self.add_room_object(Items(self, 650, 628))
+        self.add_room_object(Catch(self, 864, 500))
+        self.add_room_object(Feed(self, 650, 628))
 
         # add HUD items
         self.opponent_hp = Opponent_HP(self, 
