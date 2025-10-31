@@ -31,6 +31,16 @@ class Pikachu(RoomObject):
         image = self.load_image("Pokemon_frames\Pikachu.png")
         self.set_image(image,256,256)
 
+class Frosslass(RoomObject):
+    def __init__(self, room, x, y):
+
+        # include attributes and methods from RoomObject
+        RoomObject.__init__(self, room, x, y)
+        
+        # set image
+        image = self.load_image("Pokemon_frames\Frosslass.png")
+        self.set_image(image,256,256)
+
 class Alolan_Diglet(RoomObject):
     def __init__(self, room, x, y):
 

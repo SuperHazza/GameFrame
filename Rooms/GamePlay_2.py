@@ -1,8 +1,8 @@
 from GameFrame import Level
 from Objects.Trainer_1 import Trainer_1
 from Objects.Trainer_2 import Trainer_2
-from Objects.Grass import Grass
-from Objects.Room_TP_2 import Room_TP_2
+from Objects.Grass import Icy_Water
+from Objects.Room_TP import Room_TP_3, Room_TP_4
 from Objects.Poke_Store import Poke_Store
 
 class GamePlay_2(Level):
@@ -10,13 +10,12 @@ class GamePlay_2(Level):
         Level.__init__(self, screen, joysticks)
         
         # set background image
-        self.set_background_image("Rooms\Background.png")
+        self.set_background_image("Rooms\Ice_Cave_Background.png")
 
         # add objects
         from Objects.Player import Player
-        self.add_room_object(Player(self, 345, 360))
-        self.add_room_object(Trainer_1(self,200, 600))
-        self.add_room_object(Trainer_2(self,600, 100))
-        self.add_room_object(Grass(self,500, 400))
-        self.add_room_object(Room_TP_2(self,50, 200))
-        self.add_room_object(Poke_Store(self,825, 600))
+        self.add_room_object(Player(self, 300, 300))
+        self.add_room_object(Icy_Water(self,200, 500))
+        self.add_room_object(Room_TP_4(self, 800, 300))
+        self.add_room_object(Room_TP_3(self,25, 300))
+

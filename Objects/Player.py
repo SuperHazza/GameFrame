@@ -30,7 +30,11 @@ class Player(RoomObject):
         self.register_collision_object("Room_TP")
         self.register_collision_object("Room_TP_2")
         self.register_collision_object("Poke_Centre")
+        self.register_collision_object("Desert_Grass")
         self.register_collision_object("Poke_Store")
+        self.register_collision_object("Room_TP_3")
+        self.register_collision_object("Room_TP_4")
+        self.register_collision_object("Icy_Water")
         
     def key_pressed(self, key):
         """
@@ -38,13 +42,13 @@ class Player(RoomObject):
         """
         
         if key[pygame.K_w]:
-            self.y -= 5
+            self.y -= 10
         elif key[pygame.K_s]:
-            self.y += 5
+            self.y += 10
         if key[pygame.K_a]:
-            self.x -= 5
+            self.x -= 10
         elif key[pygame.K_d]:
-            self.x += 5
+            self.x += 10
         elif key[pygame.K_UP]:
             self.image.set_alpha(10)
         elif key[pygame.K_DOWN]:
@@ -54,10 +58,10 @@ class Player(RoomObject):
         """
         Keeps the player inside the room
         """
-        if self.y < 100:
-            self.y = 100
-        elif self.y + self.height> Globals.SCREEN_HEIGHT-100:
-            self.y = Globals.SCREEN_HEIGHT-100 - self.height
+        if self.y < 50:
+            self.y = 50
+        elif self.y + self.height> Globals.SCREEN_HEIGHT-50:
+            self.y = Globals.SCREEN_HEIGHT-50 - self.height
         elif self.x < 0:
             self.x = 0
         elif self.x + self.width> Globals.SCREEN_WIDTH:
@@ -89,10 +93,22 @@ class Player(RoomObject):
                 Globals.next_level = Globals.levels.index("GamePlay_2")
             self.room.running = False
 
-        if other_type == "Room_TP_2":
+        if other_type == "Room_TP_3":
             print("Teleported!")
             if "GamePlay" in Globals.levels:
                 Globals.next_level = Globals.levels.index("GamePlay")
+            self.room.running = False
+
+        if other_type == "Room_TP_4":
+            print("Teleported!")
+            if "GamePlay_3" in Globals.levels:
+                Globals.next_level = Globals.levels.index("GamePlay_3")
+            self.room.running = False
+
+        if other_type == "Room_TP_2":
+            print("Teleported!")
+            if "GamePlay_2" in Globals.levels:
+                Globals.next_level = Globals.levels.index("GamePlay_2")
             self.room.running = False
 
         if other_type == "Poke_Store":
@@ -111,6 +127,7 @@ class Player(RoomObject):
             if not hasattr(self, "in_grass") or not self.in_grass:  # only trigger when first stepping in
                 self.in_grass = True
                 print("Stepped in Grass!")
+                Globals.last_grass = "Grass"
 
                 # Set a future time for the encounter
                 self.encounter_time = time.time() + random.randint(1, 5)
@@ -133,6 +150,61 @@ class Player(RoomObject):
             self.encounter_time = 0
             self.encounter_triggered = False
 
+        if other_type == "Desert_Grass":
+            if not hasattr(self, "in_desert_grass") or not self.in_desert_grass:  # only trigger when first stepping in
+                self.in_desert_grass = True
+                print("Stepped in Desert Grass!")
+                Globals.last_grass = "Desert_Grass"
+
+                # Set a future time for the encounter
+                self.desert_encounter_time = time.time() + random.randint(1, 5)
+                self.desert_encounter_triggered = False
+
+        # Somewhere in your game loop, keep checking:
+        if hasattr(self, "in_desert_grass") and self.in_desert_grass and not self.desert_encounter_triggered:
+            if time.time() >= self.desert_encounter_time:  # Time has passed
+                print("DESERT POKEMON ENCOUNTER!!!!!")
+
+                if "Pokemon_Encounter" in Globals.levels:
+                    Globals.next_level = Globals.levels.index("Pokemon_Encounter")
+                    self.room.running = False
+
+                self.desert_encounter_triggered = True  # so it doesn't trigger repeatedly
+
+        # When player leaves the grass
+        if other_type != "Desert_Grass":
+            self.in_desert_grass = False
+            self.desert_encounter_time = 0
+            self.desert_encounter_triggered = False
+
+        if other_type == "Icy_Water":
+            if not hasattr(self, "in_icy_water") or not self.in_icy_water:  # only trigger when first stepping in
+                self.in_icy_water = True
+                print("Stepped in Icy Water!")
+                Globals.last_grass = "Icy_Water"
+
+                # Set a future time for the encounter
+                self.icy_encounter_time = time.time() + random.randint(1, 5)
+                self.icy_encounter_triggered = False
+
+        # Somewhere in your game loop, keep checking:
+        if hasattr(self, "in_icy_water") and self.in_icy_water and not self.icy_encounter_triggered:
+            if time.time() >= self.icy_encounter_time:  # Time has passed
+                print("ICY POKEMON ENCOUNTER!!!!!")
+
+                if "Pokemon_Encounter" in Globals.levels:
+                    Globals.next_level = Globals.levels.index("Pokemon_Encounter")
+                    self.room.running = False
+
+                self.icy_encounter_triggered = True  # so it doesn't trigger repeatedly
+
+        # When player leaves the grass
+        if other_type != "Icy_Water":
+            self.in_icy_water = False
+            self.icy_encounter_time = 0
+            self.icy_encounter_triggered = False
+
+
 class Big_Player(RoomObject):
 
     def __init__(self, room, x, y):
@@ -154,4 +226,7 @@ class Big_Player(RoomObject):
             self.set_image(image,256,256)
         elif Globals.CURRENT_POKEMON == "Mega_Victribell":
             image = self.load_image("Pokemon_frames\Mega_Victribell.png")
+            self.set_image(image,256,256)
+        elif Globals.CURRENT_POKEMON == "Frosslass":
+            image = self.load_image("Pokemon_frames\Frosslass.png")
             self.set_image(image,256,256)

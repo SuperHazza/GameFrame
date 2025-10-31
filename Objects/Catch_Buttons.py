@@ -15,8 +15,8 @@ class Yes_Button(RoomObject):
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 347 <= mouse_x <= 347+128 and 500 <= mouse_y <= 564:
                 print("You chose to catch the Pokemon")
-                if Globals.Last_Opponent_Pokemon == "Alolan_Diglet":
-                    Globals.CURRENT_POKEMON == "Alolan_Diglet"
+                Globals.MYSTERY_MEAT_STOCK += 1
+                Globals.CURRENT_POKEMON = Globals.Last_Opponent_Pokemon
                 Globals.next_level = Globals.levels.index("GamePlay")
                 self.room.running = False
 
@@ -35,6 +35,7 @@ class No_Button(RoomObject):
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 549 <= mouse_x <= 549+128 and 500 <= mouse_y <= 564:
                 print("You chose not to catch the Pokemon")
+                Globals.MYSTERY_MEAT_STOCK += 1
                 Globals.next_level = Globals.levels.index("GamePlay")
                 self.room.running = False
 

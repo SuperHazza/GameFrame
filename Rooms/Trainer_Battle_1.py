@@ -14,8 +14,8 @@ class Trainer_Battle_1(Level):
 
         # add objects
         from Objects.Player import Big_Player
-        self.add_room_object(Miss(self, 50, 50))
-        self.add_room_object(Crit(self, 50, 50))
+#        self.add_room_object(Miss(self, 50, 50))
+#        self.add_room_object(Crit(self, 50, 50))
         self.add_room_object(Mega_Victribell(self, 620, 30))
         self.add_room_object(Big_Player(self, 177, 400))
         self.add_room_object(Attack(self, 650, 500))

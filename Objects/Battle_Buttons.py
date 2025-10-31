@@ -28,6 +28,9 @@ class Attack(RoomObject):
         super().__init__(room, x, y)
         image = self.load_image("Battle/Attack_Button.png")
         self.set_image(image, 128, 64)
+
+#        self.room.delete_object(Miss)
+#        self.room.delete_object(Crit)
         
         self.handle_key_events = True
         self.previous_mouse = None
@@ -40,13 +43,15 @@ class Attack(RoomObject):
                 print(miss_crit_2)
                 if miss_crit_2 == 2:
                     print("Your attack missed!")
+#                    self.room.add_room_object(Miss(self.room, 50, 50))
                     #SPAWN MISS EFFECT
-                    #self.set_timer(30, DESTROY MISS EFFECT)
+#                    self.set_timer(40, self.room.delete_object(Miss))
                 elif miss_crit_2 == 3:
                     self.room.opponent_hp.update_opponent_hp(random.randint(-24, -16))
                     print("You hit a critical hit!")
+#                    self.room.add_room_object(Crit(self.room, 50, 50))
                     #SPAWN CRIT EFFECT
-                    #self.set_timer(30, DESTROY CRIT EFFECT)
+#                    self.set_timer(40, self.room.delete_object(Crit))
                 else:
                     self.room.opponent_hp.update_opponent_hp(random.randint(-12, -8))
                     print("You Attacked the Opponent")
@@ -58,6 +63,7 @@ class Attack(RoomObject):
 
     def enemy_attack(self):
         if Globals.OPPONENT_HP <= 0:
+            Globals.OPPONENT_HP = 0
             print("Opponent Defeated, A Pokeball was restocked!")
             Globals.POKE_BALL_STOCK += 1
             Globals.next_level = Globals.levels.index("GamePlay")
@@ -71,6 +77,7 @@ class Attack(RoomObject):
                 self.room.player_hp.update_player_hp(random.randint(-20, -12))
                 print("The Opponent Hit a Critical Hit!")
                 if Globals.PLAYER_HP <= 0:
+                    Globals.PLAYER_HP = 0
                     print("You have been defeated!")
                     Globals.next_level = Globals.levels.index("GamePlay")
                     self.room.running = False
@@ -97,7 +104,19 @@ class Feed(RoomObject):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 650 <= mouse_x <= 778 and 628 <= mouse_y <= 692:
-                print("Fed mystery meat to your Pokemon!")
+                if Globals.MYSTERY_MEAT <= 0:
+                    print("You have no Mystery Meat to feed your Pokemon!")
+                    return
+                else:
+                    Globals.MYSTERY_MEAT -= 1
+                    meat_luck = random.randint(1, 2)
+                    print("Fed mystery meat to your Pokemon!")
+                    if meat_luck == 1:
+                        self.room.player_hp.update_player_hp(random.randint(30, 60))
+                        print("Your Pokemon healed some HP!")
+                    else:
+                        self.room.player_hp.update_player_hp(random.randint(-20, -5))
+                        print("The mystery meat was spoiled! Your Pokemon didn't like it.")
 
 class Catch(RoomObject):
 

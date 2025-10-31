@@ -1,5 +1,5 @@
 from GameFrame import Level, Globals
-from Objects.Pokemon import Alolan_Diglet, Opponent_HP, Player_HP
+from Objects.Pokemon import Alolan_Diglet, Opponent_HP, Player_HP, Hisuian_Zorua, Frosslass
 from Objects.Player import Big_Player
 from Objects.Battle_Buttons import Attack, Run, Catch, Feed
 from Objects.Battle_Effects import Miss, Crit
@@ -15,10 +15,17 @@ class Pokemon_Encounter(Level):
         self.set_background_image("Rooms\Battle_Background.png")
 
         # add objects
-        self.add_room_object(Miss(self, 50, 50))
-        self.add_room_object(Crit(self, 50, 50))
-        self.add_room_object(Alolan_Diglet(self, 620, 30))
-        Globals.Last_Opponent_Pokemon == "Alolan_Diglet"
+#        self.add_room_object(Miss(self, 50, 50))
+#        self.add_room_object(Crit(self, 50, 50))
+        if Globals.last_grass == "Grass":
+            self.add_room_object(Alolan_Diglet(self, 620, 30))
+            Globals.Last_Opponent_Pokemon = "Alolan_Diglet"
+        elif Globals.last_grass == "Desert_Grass":
+            self.add_room_object(Hisuian_Zorua(self, 620, 30))
+            Globals.Last_Opponent_Pokemon = "Hisuian_Zorua"
+        elif Globals.last_grass == "Icy_Water":
+            self.add_room_object(Frosslass(self, 620, 30))
+            Globals.Last_Opponent_Pokemon = "Frosslass"
         self.add_room_object(Big_Player(self, 177, 400))
         self.add_room_object(Attack(self, 650, 500))
         self.add_room_object(Run(self, 864, 628))   

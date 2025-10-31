@@ -50,9 +50,14 @@ class Buy_2(RoomObject):
         if pygame.mouse.get_pressed()[0]:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if 500 <= mouse_x <= 756 and 378 <= mouse_y <= 506:
-                print("bought an item 2")
-                Globals.MYSTERY_MEAT += 1
-                print("You now have", Globals.MYSTERY_MEAT, "Mystery Meats!")
+                if Globals.MYSTERY_MEAT_STOCK <= 0:
+                    print("Sorry, we're out of Mystery Meat!")
+                    return
+                else:
+                    print("bought an item 2")
+                    Globals.MYSTERY_MEAT += 1
+                    Globals.MYSTERY_MEAT_STOCK -= 1
+                    print("You now have", Globals.MYSTERY_MEAT, "Mystery Meats!")
 
 class Exit(RoomObject):
 
